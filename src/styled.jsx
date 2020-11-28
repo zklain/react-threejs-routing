@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-
+import { forwardRef } from 'react';
 export const Navbar = (props) => (
   <nav
     css={css`
@@ -18,35 +18,44 @@ export const Navbar = (props) => (
   />
 );
 
-export const Container = ({ children, bg = '#000' }) => (
+export const Container = forwardRef(({ children, bg = '#000' }, ref) => (
   <div
+    ref={ref}
     css={css`
       display: flex;
       position: fixed;
-      /* top: -250px; */
       left: 0;
       flex-direction: column;
       width: 100%;
-      height: 100vh;
+      height: 30vh;
       justify-content: center;
       align-items: center;
       z-index: 00;
       background-color: ${bg};
+      & + div {
+        position: relative;
+      }
+      & .heading {
+        position: relative;
+      }
     `}
     children={children}
   />
-);
+));
 
 export const Heading = ({ children }) => (
   <h1
     css={css`
-      font-size: 10rem;
+      font-size: 7.5rem;
       font-family: Arial Black, Helvetica, sans-serif;
       color: transparent;
       -webkit-text-stroke-color: #ffffff;
       -webkit-text-stroke-width: 2px;
       text-transform: uppercase;
       pointer-events: none;
+      @media only screen and (min-width: 500) {
+        font-size: 10rem;
+      }
     `}
     children={children}
   />

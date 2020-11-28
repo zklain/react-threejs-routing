@@ -7,14 +7,12 @@ import { Container, Heading, Navbar } from './styled';
 import * as THREE from 'three';
 
 const PageHeading = ({ children, portal = null }) => (
-  // !FIX: pointer looks don't work when HTML inserted
   <Html
-    style={{ width: '100%', height: '100%' }}
+    style={{ position: 'absolute', transform: 'translate3d(-50%, 50%, 0)' }}
+    className='heading'
     portal={portal}
     zIndexRange={[20, 10]}>
-    {/* <Container> */}
     <Heading>{children}</Heading>
-    {/* </Container> */}
   </Html>
 );
 
@@ -55,7 +53,7 @@ const Pages = ({ portal = null }) => {
     <Switch>
       <group rotation={rotation}>
         <Route path='/text'>
-          <Text>Juicy Routing</Text>
+          <Text portal='portal'>Juicy Routing</Text>
         </Route>
         <Route path='/'>
           <PageHeading portal={portal}>Box</PageHeading>
@@ -67,10 +65,10 @@ const Pages = ({ portal = null }) => {
           <Sphere>
             <meshStandardMaterial color='magenta' />
           </Sphere>
-          <PageHeading>Sphere</PageHeading>
+          <PageHeading portal={portal}>Sphere</PageHeading>
         </Route>
         <Route path='/knot'>
-          <PageHeading>Knot</PageHeading>
+          <PageHeading portal={portal}>Knot</PageHeading>
           <TorusKnot>
             <meshStandardMaterial
               roughness={0.2}
@@ -94,9 +92,7 @@ function App() {
         <Link to='/knot'>Knot</Link>
         <Link to='/text'>text</Link>
       </Navbar>
-      <Container>
-        <div ref={containerRef} />
-      </Container>
+      <Container ref={containerRef} />
       <Canvas concurrent camera={{ position: [0, 0, 10] }}>
         <OrbitControls />
         <ambientLight intensity={1} />
@@ -111,7 +107,7 @@ function App() {
 }
 
 export default App;
-
+// todo: auto resize canvas
 // todo: animations
 // todo: different color for page
 
@@ -121,6 +117,8 @@ export default App;
 
 // todo: models served by CDN
 // todo: add text as ThreeJS text?
+
+// todo: try text in place
 
 // Variation No. 2 single object, different color
 // Variation No. 3 single object, or mesh, changing shape with page transition
