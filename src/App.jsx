@@ -4,16 +4,24 @@ import { Canvas } from 'react-three-fiber';
 import { Container as HeadingContainer } from './components/styled';
 import Pages from './pages';
 import Header from './components/Header';
+import { useSpring } from '@react-spring/core';
+import { useLocation } from 'wouter';
 
 function App() {
   const containerRef = useRef();
+  const [location] = useLocation();
+
+  const colorAnim = useSpring({
+    background: location === '/cactus' ? 'white' : 'black',
+    color: location === '/cactus' ? 'black' : 'white',
+  });
 
   return (
     <div className='App'>
-      <Header />
-      <HeadingContainer ref={containerRef} />
+      <Header style={{ color: colorAnim.color }} />
+      <HeadingContainer style={colorAnim} ref={containerRef} />
       <Canvas
-        invalidateFrameLoop
+        invalidateFrameloop
         colorManagement
         concurrent
         camera={{ position: [0, 0, 10] }}>
@@ -22,7 +30,7 @@ function App() {
         <spotLight position={[0, 30, 40]} />
         <spotLight position={[-50, 30, 40]} />
         <Suspense fallback={null}>
-          <Pages portal={containerRef} />
+          <Pages pageAnims={colorAnim} portal={containerRef} />
         </Suspense>
       </Canvas>
       <Loader />
@@ -33,6 +41,8 @@ function App() {
 export default App;
 
 // todo: no orbitControls, just rotation of the shape
+
+// todo: same shape, only change color
 
 // todo: scroll page and animate
 // todo: auto resize canvas

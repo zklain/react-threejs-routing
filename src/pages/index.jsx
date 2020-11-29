@@ -6,7 +6,8 @@ import PageHeading from '../components/PageHeading';
 import Text from '../components/Text';
 import Cactus from '../components/Cactus';
 import { a, useSpring, useTransition } from '@react-spring/three';
-const Pages = ({ portal = null }) => {
+
+const Pages = ({ portal = null, pageAnims }) => {
   const [rotation, setRotation] = useState([Math.PI / 6, Math.PI / 6, 0]);
   const [location] = useLocation();
 
@@ -27,7 +28,9 @@ const Pages = ({ portal = null }) => {
     <a.group position={position} scale={scale}>
       <Switch location={location}>
         <Route path='/cactus'>
-          <PageHeading animated={{ opacity }} portal={portal}>
+          <PageHeading
+            animated={{ opacity, color: pageAnims.color }}
+            portal={portal}>
             Cactus
           </PageHeading>
           <Cactus />

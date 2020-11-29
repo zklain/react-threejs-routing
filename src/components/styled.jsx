@@ -1,9 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { animated } from '@react-spring/three';
+import { animated } from '@react-spring/web';
 import { forwardRef } from 'react';
 export const Navbar = (props) => (
-  <nav
+  <animated.nav
+    style={props.style}
     css={css`
       position: fixed;
       top: 1rem;
@@ -11,7 +12,7 @@ export const Navbar = (props) => (
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: #fff;
+      /* color: #fff; */
       z-index: 1000;
       padding: 20px 30px;
     `}
@@ -19,16 +20,17 @@ export const Navbar = (props) => (
   />
 );
 
-export const Container = forwardRef(({ children, bg = '#000' }, ref) => (
-  <div
+export const Container = forwardRef(({ children, bg = '#000', style }, ref) => (
+  <animated.div
     ref={ref}
+    style={style}
     css={css`
       display: flex;
       position: fixed;
       left: 0;
       flex-direction: column;
       width: 100%;
-      height: 30vh;
+      height: 100vh;
       justify-content: center;
       align-items: center;
       z-index: 00;
@@ -44,8 +46,14 @@ export const Container = forwardRef(({ children, bg = '#000' }, ref) => (
   />
 ));
 
+// export const AnimatedContainer = animated(Container);
+
 export const Heading = ({ children, style }) => (
-  <h1
+  <animated.h1
+    style={{
+      opacity: style.opacity,
+      WebkitTextStrokeColor: style.color,
+    }}
     css={css`
       font-size: 7.5rem;
       font-family: Arial Black, Helvetica, sans-serif;
@@ -58,9 +66,6 @@ export const Heading = ({ children, style }) => (
         font-size: 10rem;
       }
     `}
-    style={style}
     children={children}
   />
 );
-
-export const HeadingAnimated = animated(Heading);

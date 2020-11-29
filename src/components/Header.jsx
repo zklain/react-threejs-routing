@@ -7,8 +7,8 @@ import { Link } from 'wouter';
 //   return <Link />;
 // };
 
-const Header = () => (
-  <Navbar>
+const Header = ({ style }) => (
+  <Navbar style={style}>
     <Link to='/'>Box</Link>
     <Link to='/knot'>Knot</Link>
     <Link to='/text'>text</Link>

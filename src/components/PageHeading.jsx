@@ -1,6 +1,6 @@
 import React from 'react';
 import { Html } from '@react-three/drei';
-import { Heading, HeadingAnimated } from './styled';
+import { Heading } from './styled';
 
 const PageHeading = ({ children, portal = null, animated }) => (
   // todo: animated heading
@@ -9,7 +9,7 @@ const PageHeading = ({ children, portal = null, animated }) => (
     className='heading'
     portal={portal}
     zIndexRange={[20, 10]}>
-    <HeadingAnimated style={animated}>{children}</HeadingAnimated>
+    <Heading style={animated}>{children}</Heading>
   </Html>
 );
 
