@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { animated } from '@react-spring/three';
 import { forwardRef } from 'react';
 export const Navbar = (props) => (
   <nav
@@ -43,7 +44,7 @@ export const Container = forwardRef(({ children, bg = '#000' }, ref) => (
   />
 ));
 
-export const Heading = ({ children }) => (
+export const Heading = ({ children, style }) => (
   <h1
     css={css`
       font-size: 7.5rem;
@@ -57,6 +58,9 @@ export const Heading = ({ children }) => (
         font-size: 10rem;
       }
     `}
+    style={style}
     children={children}
   />
 );
+
+export const HeadingAnimated = animated(Heading);

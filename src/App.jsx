@@ -1,5 +1,5 @@
 import React, { Suspense, useRef } from 'react';
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, Loader } from '@react-three/drei';
 import { Canvas } from 'react-three-fiber';
 import { Container as HeadingContainer } from './components/styled';
 import Pages from './pages';
@@ -7,13 +7,15 @@ import Header from './components/Header';
 
 function App() {
   const containerRef = useRef();
+
   return (
     <div className='App'>
       <Header />
       <HeadingContainer ref={containerRef} />
       <Canvas
         invalidateFrameLoop
-        colorManagementconcurrent
+        colorManagement
+        concurrent
         camera={{ position: [0, 0, 10] }}>
         <OrbitControls />
         <ambientLight intensity={1} />
@@ -23,11 +25,15 @@ function App() {
           <Pages portal={containerRef} />
         </Suspense>
       </Canvas>
+      <Loader />
     </div>
   );
 }
 
 export default App;
+
+// todo: no orbitControls, just rotation of the shape
+
 // todo: scroll page and animate
 // todo: auto resize canvas
 // todo: center text and object (flex?)
@@ -43,6 +49,7 @@ export default App;
 
 // todo: try text in place
 // todo: optimize imports => mesure bundle size
+// todo: use objects as link
 
 // Variation No. 2 single object, different color
 // Variation No. 3 single object, or mesh, changing shape with page transition
