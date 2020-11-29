@@ -1,27 +1,59 @@
-import { Box, TorusKnot } from '@react-three/drei';
+import { a, useSpring, useTransition } from '@react-spring/three';
+import { TorusKnot } from '@react-three/drei';
 import React, { useState } from 'react';
-import { useFrame } from 'react-three-fiber';
 import { Route, Switch, useLocation } from 'wouter';
+import Cactus from '../components/Cactus';
 import PageHeading from '../components/PageHeading';
 import Text from '../components/Text';
-import Cactus from '../components/Cactus';
-import { a, useSpring, useTransition } from '@react-spring/three';
+
+const BoxPage = () => {
+  const color = useSpring({
+    from: { color: 'cyan' },
+    to: async (next) => {
+      while (1) {
+        await next({ color: 'yellow' });
+        await next({ color: 'magenta' });
+        await next({ color: 'azure' });
+        await next({ color: 'salmon' });
+        await next({ color: 'chartreuse' });
+        await next({ color: 'cyan' });
+      }
+    },
+  });
+
+  const [zoom, setZoom] = useState(false);
+
+  const anim = useSpring({
+    scale: zoom ? 5.0 : 2.0,
+    config: {
+      mass: 2.3,
+      tension: 113,
+      friction: 20,
+    },
+  });
+
+  const boxScale = anim.scale.to((x) => [x, x, x]);
+
+  return (
+    <group>
+      <a.mesh
+        onClick={() => setZoom(!zoom)}
+        rotation={[-Math.PI / 3, 0, Math.PI / 3]}
+        scale={boxScale}>
+        <boxBufferGeometry />
+        <a.meshStandardMaterial color={color.color} />
+      </a.mesh>
+    </group>
+  );
+};
 
 const Pages = ({ portal = null, pageAnims }) => {
-  const [rotation, setRotation] = useState([Math.PI / 6, Math.PI / 6, 0]);
   const [location] = useLocation();
-
-  const spring = useSpring({});
 
   const transition = useTransition(location, {
     from: { position: [30, 0, -20], scale: [0, 0, 0], opacity: 0 },
     enter: { position: [0, 0, 0], scale: [1, 1, 1], opacity: 1 },
     leave: { position: [-30, 0, -10], scale: [0, 0, 0], opacity: 0 },
-  });
-
-  useFrame((state, delta) => {
-    // const rotationSpeed = Math.sin(delta * 0.5);
-    // setRotation([Math.PI / 6, rotation[1] + rotationSpeed, 0]);
   });
 
   return transition(({ position, scale, opacity }, location) => (
@@ -43,9 +75,7 @@ const Pages = ({ portal = null, pageAnims }) => {
             Box
           </PageHeading>
 
-          <Box scale={[3, 3, 3]}>
-            <meshStandardMaterial color='cyan' />
-          </Box>
+          <BoxPage />
         </Route>
         <Route path='/knot'>
           <PageHeading animated={{ opacity }} portal={portal}>

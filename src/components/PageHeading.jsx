@@ -3,9 +3,11 @@ import { Html } from '@react-three/drei';
 import { Heading } from './styled';
 
 const PageHeading = ({ children, portal = null, animated }) => (
-  // todo: animated heading
   <Html
-    style={{ position: 'absolute', transform: 'translate3d(-50%, 50%, 0)' }}
+    style={{
+      position: 'absolute',
+      transform: 'translate3d(-50%, 75%, 0)',
+    }}
     className='heading'
     portal={portal}
     zIndexRange={[20, 10]}>

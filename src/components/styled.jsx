@@ -12,8 +12,8 @@ export const Navbar = (props) => (
       display: flex;
       justify-content: space-between;
       align-items: center;
-      /* color: #fff; */
       z-index: 1000;
+      will-change: color;
       padding: 20px 30px;
     `}
     {...props}
@@ -35,6 +35,7 @@ export const Container = forwardRef(({ children, bg = '#000', style }, ref) => (
       align-items: center;
       z-index: 00;
       background-color: ${bg};
+      will-change: background-color;
       & + div {
         position: relative;
       }
