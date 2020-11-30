@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { a } from '@react-spring/three';
 import { useSpring } from '@react-spring/core';
-import { Box, TorusKnot } from '@react-three/drei';
+import { a } from '@react-spring/three';
+import { TorusKnot } from '@react-three/drei';
+import React, { useState } from 'react';
 import { Route, Switch, useLocation } from 'wouter';
 import Cactus from '../components/Cactus';
 import PageHeading from '../components/PageHeading';

@@ -1,10 +1,8 @@
-import React, { lazy, Suspense, useRef } from 'react';
 import { useSpring, useTransition } from '@react-spring/core';
-import { Box, OrbitControls } from '@react-three/drei';
+import React, { lazy, Suspense, useRef } from 'react';
 import { useLocation } from 'wouter';
 import Header from './components/Header';
 import { Container as HeadingContainer } from './components/styled';
-import Pages from './pages';
 
 const Canvas = lazy(() => import('./components/Canvas'));
 
