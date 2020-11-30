@@ -1,11 +1,11 @@
+import { useSpring } from '@react-spring/core';
+import { OrbitControls } from '@react-three/drei';
 import React, { Suspense, useRef } from 'react';
-import { OrbitControls, Loader } from '@react-three/drei';
 import { Canvas } from 'react-three-fiber';
+import { useLocation } from 'wouter';
+import Header from './components/Header';
 import { Container as HeadingContainer } from './components/styled';
 import Pages from './pages';
-import Header from './components/Header';
-import { useSpring } from '@react-spring/core';
-import { useLocation } from 'wouter';
 
 function App() {
   const containerRef = useRef();
@@ -33,7 +33,7 @@ function App() {
           <Pages pageAnims={colorAnim} portal={containerRef} />
         </Suspense>
       </Canvas>
-      <Loader />
+      {/* <Loader /> */}
     </div>
   );
 }
