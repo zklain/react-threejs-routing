@@ -2,7 +2,7 @@ import { useSpring } from '@react-spring/core';
 import { a } from '@react-spring/three';
 import { TorusKnot } from '@react-three/drei';
 import React, { useState } from 'react';
-import { Route, Switch, useLocation } from 'wouter';
+import { Route, Switch } from 'wouter';
 import Cactus from '../components/Cactus';
 import PageHeading from '../components/PageHeading';
 import Text from '../components/Text';
@@ -50,8 +50,6 @@ const BoxPage = () => {
 };
 
 const Pages = ({ portal = null, pageAnims, transition }) => {
-  const [location] = useLocation();
-
   return transition(({ position, scale, opacity }, location) => (
     <a.group position={position} scale={scale}>
       <Switch location={location}>
