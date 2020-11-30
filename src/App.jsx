@@ -1,11 +1,12 @@
-import { useSpring } from '@react-spring/core';
-import { OrbitControls } from '@react-three/drei';
-import React, { Suspense, useRef } from 'react';
-import { Canvas } from 'react-three-fiber';
+import React, { lazy, Suspense, useRef } from 'react';
+import { useSpring, useTransition } from '@react-spring/core';
+import { Box, OrbitControls } from '@react-three/drei';
 import { useLocation } from 'wouter';
 import Header from './components/Header';
 import { Container as HeadingContainer } from './components/styled';
 import Pages from './pages';
+
+const Canvas = lazy(() => import('./components/Canvas'));
 
 function App() {
   const containerRef = useRef();
@@ -16,30 +17,30 @@ function App() {
     color: location === '/cactus' ? 'black' : 'white',
   });
 
+  const transition = useTransition(location, {
+    from: { position: [30, 0, -20], scale: [0, 0, 0], opacity: 0 },
+    enter: { position: [0, 0, 0], scale: [1, 1, 1], opacity: 1 },
+    leave: { position: [-30, 0, -10], scale: [0, 0, 0], opacity: 0 },
+  });
+
   return (
     <div className='App'>
       <Header style={{ color: colorAnim.color }} />
       <HeadingContainer style={colorAnim} ref={containerRef} />
-      <Canvas
-        invalidateFrameloop
-        colorManagement
-        concurrent
-        camera={{ position: [0, 0, 10] }}>
-        <OrbitControls />
-        <ambientLight intensity={1} />
-        <spotLight position={[0, 30, 40]} />
-        <spotLight position={[-50, 30, 40]} />
-        <Suspense fallback={null}>
-          <Pages pageAnims={colorAnim} portal={containerRef} />
-        </Suspense>
-      </Canvas>
-      {/* <Loader /> */}
+      <Suspense fallback={<h1>Loading</h1>}>
+        <Canvas
+          transition={transition}
+          colorAnim={colorAnim}
+          containerRef={containerRef}
+        />
+      </Suspense>
     </div>
   );
 }
 
 export default App;
 
+// todo: error boundary
 // todo: no orbitControls, just rotation of the shape
 
 // todo: same shape, only change color

@@ -3,7 +3,7 @@ import { FontLoader, Vector3 } from 'three';
 import { useLoader, useUpdate } from 'react-three-fiber';
 
 const Text = ({ children }) => {
-  const font = useLoader(FontLoader, 'Fira Code_Regular.json');
+  const font = useLoader(FontLoader, '/Fira Code_Regular.json');
   const config = useMemo(() => ({ font, size: 3, height: 0.3 }), [font]);
   const mesh = useUpdate(
     (self) => {

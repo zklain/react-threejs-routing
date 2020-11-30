@@ -1,6 +1,7 @@
-import { a, useSpring, useTransition } from '@react-spring/three';
-import { TorusKnot } from '@react-three/drei';
 import React, { useState } from 'react';
+import { a } from '@react-spring/three';
+import { useSpring } from '@react-spring/core';
+import { Box, TorusKnot } from '@react-three/drei';
 import { Route, Switch, useLocation } from 'wouter';
 import Cactus from '../components/Cactus';
 import PageHeading from '../components/PageHeading';
@@ -39,6 +40,7 @@ const BoxPage = () => {
       <a.mesh
         onClick={() => setZoom(!zoom)}
         rotation={[-Math.PI / 3, 0, Math.PI / 3]}
+        // todo: proper type
         scale={boxScale}>
         <boxBufferGeometry />
         <a.meshStandardMaterial color={color.color} />
@@ -47,14 +49,8 @@ const BoxPage = () => {
   );
 };
 
-const Pages = ({ portal = null, pageAnims }) => {
+const Pages = ({ portal = null, pageAnims, transition }) => {
   const [location] = useLocation();
-
-  const transition = useTransition(location, {
-    from: { position: [30, 0, -20], scale: [0, 0, 0], opacity: 0 },
-    enter: { position: [0, 0, 0], scale: [1, 1, 1], opacity: 1 },
-    leave: { position: [-30, 0, -10], scale: [0, 0, 0], opacity: 0 },
-  });
 
   return transition(({ position, scale, opacity }, location) => (
     <a.group position={position} scale={scale}>

@@ -1,5 +1,5 @@
-/** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
+/** @jsx jsx */
+import { jsx, css } from '@emotion/react';
 import { animated } from '@react-spring/web';
 import { forwardRef } from 'react';
 export const Navbar = (props) => (
