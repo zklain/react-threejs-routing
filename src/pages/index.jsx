@@ -19,15 +19,6 @@ const Pages = ({ portal = null, pageAnims, transition }) => {
           </PageHeading>
           <BoxPage />
         </Route>
-        {/* <Route path="/cactus">
-          <PageHeading
-            animated={{ opacity, color: pageAnims.color }}
-            portal={portal}
-          >
-            Cactus
-          </PageHeading>
-          <Cactus /> */}
-        {/* </Route> */}
         <Route path="/text">
           <Text>STRV</Text>
         </Route>
