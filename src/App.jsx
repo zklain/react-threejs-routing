@@ -1,18 +1,18 @@
-import { useSpring, useTransition } from '@react-spring/core';
-import React, { lazy, Suspense, useRef } from 'react';
-import { useLocation } from 'wouter';
-import Header from './components/Header';
-import { Container as HeadingContainer } from './components/styled';
+import { useSpring, useTransition } from "@react-spring/core";
+import React, { lazy, Suspense, useRef } from "react";
+import { useLocation } from "wouter";
+import Header from "./components/Header";
+import { Container as HeadingContainer } from "./components/styled";
 
-const Canvas = lazy(() => import('./components/Canvas'));
+const Canvas = lazy(() => import("./components/Canvas"));
 
 function App() {
   const containerRef = useRef();
   const [location] = useLocation();
 
   const colorAnim = useSpring({
-    background: location === '/cactus' ? 'white' : 'black',
-    color: location === '/cactus' ? 'black' : 'white',
+    background: location === "/cactus" ? "white" : "black",
+    color: location === "/cactus" ? "black" : "white",
   });
 
   const transition = useTransition(location, {
@@ -22,8 +22,8 @@ function App() {
   });
 
   return (
-    <div className='App'>
-      <Header style={{ color: colorAnim.color }} />
+    <div className="App">
+      {/* <Header style={{ color: colorAnim.color }} /> */}
       <HeadingContainer style={colorAnim} ref={containerRef} />
       <Suspense fallback={<h1>Loading</h1>}>
         <Canvas
@@ -37,6 +37,15 @@ function App() {
 }
 
 export default App;
+
+// todo: use Drag to navigate inifinite list
+// todo: apply texture on hover
+// todo: add text
+// todo: add background
+// todo: useGesture
+// todo: finish material
+// todo: use reactSpring for animating shader / scene
+// todo: strv eslint
 
 // todo: error boundary
 // todo: no orbitControls, just rotation of the shape

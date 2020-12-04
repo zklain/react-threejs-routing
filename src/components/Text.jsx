@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react';
-import { FontLoader, Vector3 } from 'three';
-import { useLoader, useUpdate } from 'react-three-fiber';
+import React, { useMemo } from "react";
+import { FontLoader, Vector3 } from "three";
+import { useLoader, useUpdate } from "react-three-fiber";
 
 const Text = ({ children }) => {
-  const font = useLoader(FontLoader, '/Fira Code_Regular.json');
+  const font = useLoader(FontLoader, "/Fira Code_Regular.json");
   const config = useMemo(() => ({ font, size: 3, height: 0.3 }), [font]);
   const mesh = useUpdate(
     (self) => {
@@ -19,7 +19,7 @@ const Text = ({ children }) => {
     <group>
       <mesh ref={mesh}>
         <textBufferGeometry args={[children, config]} />
-        <meshStandardMaterial color='#ef0d33' />
+        <meshStandardMaterial color="#ef0d33" />
       </mesh>
     </group>
   );
