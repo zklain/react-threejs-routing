@@ -25,10 +25,11 @@ const WaveMaterial = shaderMaterial(
   }`,
   glsl`
   uniform vec3 color;
+  uniform float time;
   varying vec3 vPos;
 
   void main() {
-    vec3 newColor = color * vPos.z + 0.4;
+    vec3 newColor = color * sin(vPos.z) +  0.375;
     gl_FragColor = vec4( newColor, 1.0);
   }`
 );

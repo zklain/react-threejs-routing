@@ -15,9 +15,10 @@ const WawePlane = ({ width, height, widthSeg, heightSeg }) => {
   const ref = React.useRef();
   const [time, setTime] = React.useState(0);
   const [x, setX] = React.useState(0.3);
-  // todo: controls
+  // todo: controls for amplitude
   // todo: follow mouse
   // todo: movement
+  // todo: colors
 
   useFrame((state, delta) => {
     if (ref.current) {
@@ -38,11 +39,13 @@ const WawePlane = ({ width, height, widthSeg, heightSeg }) => {
   );
 };
 
+// todo: gestures navigation
+
 const GesturesPage = () => {
   const [location] = useLocation();
+
   return (
     <group>
-      <meshStandardMaterial color="hotpink" />
       {location === "/01" && (
         <Text
           position={[0, 3, 0]}
