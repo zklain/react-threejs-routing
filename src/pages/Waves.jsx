@@ -22,7 +22,6 @@ const WawePlane = ({ width, height, widthSeg, heightSeg }) => {
   useFrame((state, delta) => {
     if (ref.current) {
       setTime(time + delta);
-      // ref.current.material.uniforms.time += delta;
     }
   });
 
@@ -40,11 +39,11 @@ const WawePlane = ({ width, height, widthSeg, heightSeg }) => {
 };
 
 const GesturesPage = () => {
-  const [location, _] = useLocation();
+  const [location] = useLocation();
   return (
     <group>
       <meshStandardMaterial color="hotpink" />
-      {location === "/#1" && (
+      {location === "/01" && (
         <Text
           position={[0, 3, 0]}
           fontSize={0.6}

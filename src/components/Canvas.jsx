@@ -1,4 +1,4 @@
-import { Box, OrbitControls, PointerLockControls } from "@react-three/drei";
+import { Box, OrbitControls } from "@react-three/drei";
 import React, { Suspense } from "react";
 import { Canvas } from "react-three-fiber";
 import Pages from "../pages";

@@ -1,7 +1,6 @@
 import { useSpring, useTransition } from "@react-spring/core";
 import React, { lazy, Suspense, useRef } from "react";
 import { useLocation } from "wouter";
-import Header from "./components/Header";
 import { Container as HeadingContainer } from "./components/styled";
 
 const Canvas = lazy(() => import("./components/Canvas"));

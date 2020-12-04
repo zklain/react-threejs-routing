@@ -1,12 +1,10 @@
 import { a } from "@react-spring/three";
 import React from "react";
 import { Route, Switch } from "wouter";
-import Cactus from "../components/Cactus";
 import PageHeading from "../components/PageHeading";
 import Text from "../components/Text";
 import BoxPage from "./BoxPage";
 import Waves from "./Waves";
-import Juicy from "./Juicy";
 
 const Pages = ({ portal = null, pageAnims, transition }) => {
   return transition(({ position, scale, opacity }, location) => (
@@ -23,6 +21,9 @@ const Pages = ({ portal = null, pageAnims, transition }) => {
           <Text>STRV</Text>
         </Route>
         <Route path="/">
+          <Waves />
+        </Route>
+        <Route path="/01">
           <Waves />
         </Route>
       </Switch>
