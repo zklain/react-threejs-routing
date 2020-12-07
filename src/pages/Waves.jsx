@@ -1,4 +1,4 @@
-import { a } from "@react-spring/three";
+import { a, config } from "@react-spring/three";
 import { useSpring } from "@react-spring/web";
 import { clamp } from "lodash";
 import React, { useCallback, useEffect, useMemo } from "react";
@@ -45,7 +45,8 @@ const GesturesPage = () => {
   const [spring, set] = useSpring(() => ({
     backgroundPosition: [],
     position: [0, 0, 0],
-    config: { tension: 160, friction: 90, mass: 10 },
+    config: { ...config.molasses, clamp: true },
+    // config: { tension: 160, friction: 90, mass: 10, clamp: true },
   }));
 
   const fun = useCallback(
@@ -54,8 +55,14 @@ const GesturesPage = () => {
       previous: [px, py],
       memo = spring.position.get(),
       dragging,
+      movement,
+      down,
     }) => {
+      if (down && movement[0] === 0 && movement[1] === 0) {
+        return;
+      }
       let newX;
+
       if (dragging) {
         newX = clamp(memo[0] + cx - px, ...bounds);
       } else {
@@ -66,7 +73,10 @@ const GesturesPage = () => {
     [bounds, spring.position, set]
   );
 
-  const bind = useGesture({ onWheel: fun, onDrag: fun }, { domTarget: window });
+  const bind = useGesture(
+    { onWheel: fun, onDrag: fun },
+    { domTarget: window, delay: 10 }
+  );
   useEffect(() => {
     window && bind();
   }, [bind]);
