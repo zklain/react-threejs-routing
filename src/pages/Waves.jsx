@@ -13,6 +13,7 @@ import "../materials/WaveMaterial";
 import { useSpring, useSprings } from "@react-spring/web";
 import { a } from "@react-spring/three";
 import { useDrag, useGesture } from "react-use-gesture";
+import Background from "../components/Background";
 
 const defaultConfig = {
   width: 400,
@@ -167,6 +168,7 @@ const GesturesPage = () => {
       <Reflector>
         <WavesBG time={time} />
       </Reflector>
+      <Background />
     </a.group>
   );
 };
