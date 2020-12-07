@@ -32,7 +32,7 @@ const ListItem = ({ texture = null, position, name }) => {
           setColor("lightgrey");
         }}
       >
-        <meshStandardMaterial color={color} roughness={0.2} metalness={0.9} />
+        <meshStandardMaterial color={color} roughness={0.2} metalness={0.875} />
       </Dodecahedron>
     </group>
   );
