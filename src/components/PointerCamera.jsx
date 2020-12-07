@@ -11,7 +11,7 @@ const PointerCamera = () => {
     };
     document.addEventListener("mousemove", handleMouseMove);
     return () => document.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [camera.rotation, size, mouse]);
   return null;
 };
 

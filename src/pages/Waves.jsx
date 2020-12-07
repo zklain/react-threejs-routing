@@ -1,12 +1,12 @@
 import { a } from "@react-spring/three";
-import { config, useSpring } from "@react-spring/web";
+import { useSpring } from "@react-spring/web";
+import { clamp } from "lodash";
 import React, { useCallback, useEffect, useMemo } from "react";
 import { useFrame, useThree } from "react-three-fiber";
-import { useGesture, useScroll } from "react-use-gesture";
+import { useGesture } from "react-use-gesture";
 import Background from "../components/Background";
-import Waves from "../components/Waves";
 import ListItem from "../components/ListItem";
-import { clamp } from "lodash";
+import Waves from "../components/Waves";
 
 const ofItems = 5;
 const GesturesPage = () => {
@@ -26,7 +26,7 @@ const GesturesPage = () => {
   // items offset
   const offset = useMemo(() => {
     return viewport.width / 2 + 1;
-  }, [size, viewport]);
+  }, [viewport]);
 
   const bounds = useMemo(() => {
     const half = Math.floor(ofItems / 2);
@@ -39,13 +39,13 @@ const GesturesPage = () => {
       0,
       2,
     ]);
-  }, []);
+  }, [offset]);
 
   // todo: go slow
   const [spring, set] = useSpring(() => ({
     backgroundPosition: [],
     position: [0, 0, 0],
-    config: { tension: 160, friction: 70, mass: 20 },
+    config: { tension: 160, friction: 90, mass: 10 },
   }));
 
   const fun = useCallback(
@@ -69,7 +69,7 @@ const GesturesPage = () => {
   const bind = useGesture({ onWheel: fun, onDrag: fun }, { domTarget: window });
   useEffect(() => {
     window && bind();
-  }, [window, bind]);
+  }, [bind]);
 
   useFrame((_, delta) => {
     setTime(time + delta);
