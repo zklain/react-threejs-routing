@@ -29,8 +29,7 @@ const WaveMaterial = shaderMaterial(
   varying vec3 vPos;
 
   void main() {
-    // todo: contrast
-    vec3 newColor = color * sin(vPos.z) +  0.5;
+    vec3 newColor = color * 2.25 * sin(-vPos.z - 2.5) + 0.4;
     gl_FragColor = vec4( newColor, 1.0);
   }`
 );
