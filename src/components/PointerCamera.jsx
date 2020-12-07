@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useThree } from "react-three-fiber";
 
 const PointerCamera = () => {
