@@ -49,7 +49,6 @@
   },
   "devDependencies": {
     "@strv/prettier-config": "^1.0.3",
-    "eslint": "^7.15.0",
     "replace-in-file": "^6.1.0"
   }
 }

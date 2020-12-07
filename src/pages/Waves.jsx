@@ -20,7 +20,7 @@ const GesturesPage = () => {
   // todo: bind the scroll event to the page
   // todo: bind drag to some element
 
-  const { size, viewport } = useThree();
+  const { viewport } = useThree();
   // const aspect = size.width / viewport.width;
 
   // items offset
@@ -31,7 +31,7 @@ const GesturesPage = () => {
   const bounds = useMemo(() => {
     const half = Math.floor(ofItems / 2);
     return [-offset * half, offset * half];
-  }, [ofItems, offset]);
+  }, [offset]);
 
   const positions = useMemo(() => {
     return [...new Array(ofItems)].map((_, i) => [
