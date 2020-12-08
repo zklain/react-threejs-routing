@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/react';
-import { animated } from '@react-spring/web';
-import { forwardRef } from 'react';
+import { css, jsx } from "@emotion/react";
+import { animated } from "@react-spring/web";
+import { forwardRef } from "react";
 export const Navbar = (props) => (
   <animated.nav
     style={props.style}
@@ -20,7 +20,7 @@ export const Navbar = (props) => (
   />
 );
 
-export const Container = forwardRef(({ children, bg = '#000', style }, ref) => (
+export const Container = forwardRef(({ children, bg = "#000", style }, ref) => (
   <animated.div
     ref={ref}
     style={style}
@@ -67,6 +67,34 @@ export const Heading = ({ children, style }) => (
         font-size: 10rem;
       }
     `}
-    children={children}
+  >
+    {children}
+  </animated.h1>
+);
+
+export const CursorContainer = ({ style, children }) => (
+  <animated.div
+    style={style}
+    css={css`
+      position: absolute;
+      z-index: 99999;
+      transform: translate3d(-50%, -50%);
+      pointer-events: none;
+    `}
+  >
+    {children}
+  </animated.div>
+);
+
+export const Cursor = ({ style }) => (
+  <animated.div
+    style={style}
+    css={css`
+      height: 3rem;
+      width: 3rem;
+      border: 1px solid white;
+      border-radius: 50%;
+      opacity: 0.7;
+    `}
   />
 );

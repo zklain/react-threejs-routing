@@ -3,6 +3,7 @@ import { useSpring } from "@react-spring/web";
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { useThree } from "react-three-fiber";
 
+// todo: dont change rotation on mobile
 const PointerCamera = ({ disabled }) => {
   const ref = useRef();
 

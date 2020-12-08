@@ -1,18 +1,20 @@
-import { useSpring, useTransition } from "@react-spring/core";
+import { useTransition } from "@react-spring/core";
 import React, { lazy, Suspense, useRef } from "react";
 import { useLocation } from "wouter";
-import { Container as HeadingContainer } from "./components/styled";
+import Cursor from "./components/Cursor";
 
+/* eslint-disable */
 const Canvas = lazy(() => import("./components/Canvas"));
+/* eslint-enable */
 
 function App() {
   const containerRef = useRef();
   const [location] = useLocation();
 
-  const colorAnim = useSpring({
-    background: location === "/cactus" ? "white" : "black",
-    color: location === "/cactus" ? "black" : "white",
-  });
+  // const colorAnim = useSpring({
+  //   background: location === "/cactus" ? "white" : "black",
+  //   color: location === "/cactus" ? "black" : "white",
+  // });
 
   const transition = useTransition(location, {
     from: { position: [30, 0, -20], scale: [0, 0, 0], opacity: 0 },
@@ -23,14 +25,11 @@ function App() {
   return (
     <div className="App">
       {/* <Header style={{ color: colorAnim.color }} /> */}
-      <HeadingContainer style={colorAnim} ref={containerRef} />
+      {/* <HeadingContainer style={colorAnim} ref={containerRef} /> */}
       <Suspense fallback={<h1>Loading</h1>}>
-        <Canvas
-          transition={transition}
-          colorAnim={colorAnim}
-          containerRef={containerRef}
-        />
+        <Canvas transition={transition} containerRef={containerRef} />
       </Suspense>
+      <Cursor />
     </div>
   );
 }
