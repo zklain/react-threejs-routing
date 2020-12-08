@@ -6,12 +6,15 @@ import Text from "../components/Text";
 import BoxPage from "./BoxPage";
 import Waves from "./Waves";
 
+// todo: only use waves
 const Pages = ({ portal = null, pageAnims, transition }) => {
   return transition(({ position, scale, opacity }, location) => (
     <a.group position={position} scale={scale}>
       <Switch location={location}>
+        <Route path="/">
+          <Waves />
+        </Route>
         <Route path="/box">
-          {/* <Waves /> */}
           <PageHeading animated={{ opacity }} portal={portal}>
             Box
           </PageHeading>
@@ -19,9 +22,6 @@ const Pages = ({ portal = null, pageAnims, transition }) => {
         </Route>
         <Route path="/text">
           <Text>STRV</Text>
-        </Route>
-        <Route path="/">
-          <Waves />
         </Route>
         <Route path="/01">
           <Waves />

@@ -37,14 +37,9 @@ function App() {
 
 export default App;
 
-// todo: use Drag to navigate inifinite list
 // todo: apply texture on hover
 // todo: add text
-// todo: add background
-// todo: useGesture
-// todo: finish material
 // todo: use reactSpring for animating shader / scene
-// todo: strv eslint
 
 // todo: error boundary
 // todo: no orbitControls, just rotation of the shape
@@ -61,7 +56,7 @@ export default App;
 // todo: complex scene (add room, models, shadow)
 // todo: load model
 
-// todo: models served by CDN
+// todo: models served by CDN ?
 // todo: add text as ThreeJS text?
 
 // todo: try text in place
@@ -77,10 +72,8 @@ export default App;
 // => Next.js (SSR / SSG)
 // -> ReactRouter
 
-// !TODO: CHROMATIC ABBERATION!
-
 // version 2.0
-// transform object on page transition
+// todo: transform object on page transition
 
 // // todo: rotation => create group, pu switch inside the group
 // // todo: shapes

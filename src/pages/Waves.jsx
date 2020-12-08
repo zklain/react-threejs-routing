@@ -1,18 +1,25 @@
 import { a, config } from "@react-spring/three";
 import { useSpring } from "@react-spring/web";
 import { clamp } from "lodash";
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useFrame, useThree } from "react-three-fiber";
 import { useGesture } from "react-use-gesture";
 import Background from "../components/Background";
 import ListItem from "../components/ListItem";
+import PointerCamera from "../components/PointerCamera";
 import Waves from "../components/Waves";
 
 const ofItems = 5;
 const GesturesPage = () => {
   const [time, setTime] = React.useState(0);
+
+  const [dragging, setDragging] = useState(false);
   // todo: paralax
+  // todo: infinite scroll
   // todo: page transitions => background stays, content changes
+  // todo: init anim => camera zoom
+  // todo: camera zoom on mount
+  // todo: loading
 
   // todo: special cursor
   // todo: zoom out on click
@@ -26,7 +33,7 @@ const GesturesPage = () => {
   // items offset
   const offset = useMemo(() => {
     return viewport.width / 2 + 1;
-  }, [viewport]);
+  }, [viewport.width]);
 
   const bounds = useMemo(() => {
     const half = Math.floor(ofItems / 2);
@@ -41,7 +48,6 @@ const GesturesPage = () => {
     ]);
   }, [offset]);
 
-  // todo: go slow
   const [spring, set] = useSpring(() => ({
     backgroundPosition: [],
     position: [0, 0, 0],
@@ -58,9 +64,6 @@ const GesturesPage = () => {
       movement,
       down,
     }) => {
-      if (down && movement[0] === 0 && movement[1] === 0) {
-        return;
-      }
       let newX;
 
       if (dragging) {
@@ -74,8 +77,13 @@ const GesturesPage = () => {
   );
 
   const bind = useGesture(
-    { onWheel: fun, onDrag: fun },
-    { domTarget: window, delay: 10 }
+    {
+      onWheel: fun,
+      onDrag: fun,
+      onDragStart: () => setDragging(true),
+      onDragEnd: () => setDragging(false),
+    },
+    { domTarget: window, drag: { delay: 10, filterTaps: true } }
   );
   useEffect(() => {
     window && bind();
@@ -87,6 +95,7 @@ const GesturesPage = () => {
 
   return (
     <a.group>
+      <PointerCamera disabled={dragging} />
       <a.group {...spring}>
         {positions.map((position, index) => (
           <ListItem key={index} position={position} name={`item #${index}`} />
@@ -98,5 +107,3 @@ const GesturesPage = () => {
   );
 };
 export default GesturesPage;
-
-// todo: init anim => camera zoom

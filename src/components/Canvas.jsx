@@ -3,6 +3,7 @@ import React, { Suspense } from "react";
 import { Canvas } from "react-three-fiber";
 import Pages from "../pages";
 import PointerCamera from "./PointerCamera";
+import Waves from "./Waves";
 
 export default ({ colorAnim, containerRef, transition }) => {
   return (
@@ -16,7 +17,6 @@ export default ({ colorAnim, containerRef, transition }) => {
       <spotLight position={[0, 30, 40]} />
       <pointLight position={[0, 5, 0]} intensity={0.9} color="white" />
       <Suspense fallback={<Box />}>
-        <PointerCamera />
         <Pages
           transition={transition}
           pageAnims={colorAnim}
