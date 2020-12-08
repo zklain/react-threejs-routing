@@ -22,7 +22,7 @@ const PointerCamera = ({ disabled }) => {
     const handleMouseMove = (e) => {
       if (disabled) return;
 
-      // todo: lol
+      // todo: looool
       camera.rotation.setFromVector3(
         new Vector3(-mouse.x / size.width, mouse.y / size.height, 0)
       );
