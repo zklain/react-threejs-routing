@@ -53,7 +53,7 @@ const Cursor = () => {
 
   useEffect(() => {
     bind();
-  }, []);
+  }, [bind]);
 
   return (
     <CursorContainer
