@@ -19,8 +19,6 @@ const PointerCamera = ({ disabled }) => {
 
   useEffect(() => {
     const handleMouseMove = () => {
-      if (disabled) return;
-
       set({
         rotation: [
           (mouse.y / size.height) * 80,
@@ -31,7 +29,7 @@ const PointerCamera = ({ disabled }) => {
     };
     document.addEventListener("mousemove", handleMouseMove);
     return () => document.removeEventListener("mousemove", handleMouseMove);
-  }, [size, mouse, disabled]);
+  }, [size, mouse, disabled, set]);
 
   return (
     <a.perspectiveCamera

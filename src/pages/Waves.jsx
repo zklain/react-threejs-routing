@@ -69,7 +69,7 @@ const GesturesPage = () => {
       } else {
         newX = clamp(memo[0] + cy - py, ...bounds);
       }
-      set({ position: [newX, 0, 0] });
+      set({ position: [newX, 0, memo[2]] });
     },
     [bounds, spring.position, set]
   );
@@ -78,8 +78,24 @@ const GesturesPage = () => {
     {
       onWheel: fun,
       onDrag: fun,
-      onDragStart: () => setDragging(true),
-      onDragEnd: () => setDragging(false),
+      onMouseDown: () => {
+        const pos = spring.position.get();
+        set({
+          position: [pos[0], pos[1], -1.5],
+        });
+      },
+      onMouseUp: () => {
+        const pos = spring.position.get();
+        set({
+          position: [pos[0], pos[1], 0],
+        });
+      },
+      onDragStart: () => {
+        setDragging(true);
+      },
+      onDragEnd: () => {
+        setDragging(false);
+      },
     },
     { domTarget: window, drag: { delay: 10, filterTaps: true } }
   );

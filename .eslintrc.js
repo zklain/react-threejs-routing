@@ -18,6 +18,7 @@ module.exports = {
   plugins: ["react"],
   rules: {
     "react/prop-types": 0,
+    "no-constant-condition": 0,
   },
   settings: {
     react: {
