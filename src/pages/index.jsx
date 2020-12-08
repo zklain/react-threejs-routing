@@ -7,7 +7,7 @@ import BoxPage from "./BoxPage";
 import Waves from "./Waves";
 
 // todo: only use waves
-const Pages = ({ portal = null, pageAnims, transition }) => {
+const Pages = ({ portal = null, transition }) => {
   return transition(({ position, scale, opacity }, location) => (
     <a.group position={position} scale={scale}>
       <Switch location={location}>

@@ -2,10 +2,8 @@ import { Box } from "@react-three/drei";
 import React, { Suspense } from "react";
 import { Canvas } from "react-three-fiber";
 import Pages from "../pages";
-import PointerCamera from "./PointerCamera";
-import Waves from "./Waves";
 
-export default ({ colorAnim, containerRef, transition }) => {
+const Scene = ({ colorAnim, containerRef, transition }) => {
   return (
     <Canvas
       invalidateFrameloop
@@ -27,5 +25,5 @@ export default ({ colorAnim, containerRef, transition }) => {
   );
 };
 
-// add background
+export default Scene;
 // add grains effect

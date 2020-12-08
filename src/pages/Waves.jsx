@@ -61,8 +61,6 @@ const GesturesPage = () => {
       previous: [px, py],
       memo = spring.position.get(),
       dragging,
-      movement,
-      down,
     }) => {
       let newX;
 

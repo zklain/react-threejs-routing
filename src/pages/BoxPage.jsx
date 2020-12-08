@@ -6,7 +6,7 @@ const BoxPage = () => {
   const color = useSpring({
     from: { color: "cyan" },
     to: async (next) => {
-      while (1) {
+      while (true) {
         await next({ color: "yellow" });
         await next({ color: "magenta" });
         await next({ color: "azure" });

@@ -1,13 +1,12 @@
+import { a, config } from "@react-spring/three";
+import { useSpring } from "@react-spring/web";
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { useThree } from "react-three-fiber";
-import { Vector3 } from "three";
-import { useSpring } from "@react-spring/web";
-import { a, config } from "@react-spring/three";
 
 const PointerCamera = ({ disabled }) => {
   const ref = useRef();
 
-  const { camera, mouse, size, setDefaultCamera } = useThree();
+  const { mouse, size, setDefaultCamera } = useThree();
 
   const [animation, set] = useSpring(() => ({
     rotation: [0, 0, 0],
@@ -19,14 +18,8 @@ const PointerCamera = ({ disabled }) => {
   }, [setDefaultCamera]);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = () => {
       if (disabled) return;
-
-      // todo: looool
-      // todo: even more lol
-      camera.rotation.setFromVector3(
-        new Vector3(-mouse.x / size.width, mouse.y / size.height, 0)
-      );
 
       set({
         rotation: [
