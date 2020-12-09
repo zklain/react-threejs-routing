@@ -29,15 +29,18 @@ const BoxPage = () => {
     },
   }));
 
-  const setZoom = useCallback(({ current = anim.scale.get() }) => {
-    let scale = 2;
-    if (current[0] === 2) {
-      scale = 5;
-    }
-    set({
-      scale: [scale, scale, scale],
-    });
-  }, []);
+  const setZoom = useCallback(
+    ({ current = anim.scale.get() }) => {
+      let scale = 2;
+      if (current[0] === 2) {
+        scale = 5;
+      }
+      set({
+        scale: [scale, scale, scale],
+      });
+    },
+    [set, anim.scale]
+  );
 
   const gesture = useDrag(({ movement: [x, y] }) => {
     set({
