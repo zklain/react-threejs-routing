@@ -5,7 +5,9 @@
 }
 
 html {
-  font-family: 'Arial', sans-serif;
+  overflow: hidden;
+  font-family: "Arial", sans-serif;
+  cursor: none;
 }
 
 body {

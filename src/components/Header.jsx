@@ -1,13 +1,21 @@
-import React from 'react';
-import { Navbar } from './styled';
-import { Link } from 'wouter';
+import React from "react";
+import { Link as WLink, useRoute } from "wouter";
+import { Anchor, Navbar } from "./styled";
 
-const Header = ({ style }) => (
-  <Navbar style={style}>
-    <Link to='/'>Box</Link>
-    <Link to='/knot'>Knot</Link>
-    <Link to='/text'>text</Link>
-    <Link to='/cactus'>cactus</Link>
+const Link = (props) => {
+  const [active] = useRoute(props.href);
+  return (
+    <WLink {...props}>
+      <Anchor active={active}>{props.children}</Anchor>
+    </WLink>
+  );
+};
+
+const Header = () => (
+  <Navbar>
+    <Link href="/">List</Link>
+    <Link href="/box">Box</Link>
+    <Link href="/text">Text</Link>
   </Navbar>
 );
 

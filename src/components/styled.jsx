@@ -1,11 +1,11 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/react';
-import { animated } from '@react-spring/web';
-import { forwardRef } from 'react';
+import { css, jsx } from "@emotion/react";
+import { animated } from "@react-spring/web";
+import { forwardRef } from "react";
 export const Navbar = (props) => (
   <animated.nav
-    style={props.style}
     css={css`
+      color: white;
       position: fixed;
       top: 1rem;
       width: 100%;
@@ -20,7 +20,7 @@ export const Navbar = (props) => (
   />
 );
 
-export const Container = forwardRef(({ children, bg = '#000', style }, ref) => (
+export const Container = forwardRef(({ children, style }, ref) => (
   <animated.div
     ref={ref}
     style={style}
@@ -34,8 +34,6 @@ export const Container = forwardRef(({ children, bg = '#000', style }, ref) => (
       justify-content: center;
       align-items: center;
       z-index: 00;
-      background-color: ${bg};
-      will-change: background-color;
       & + div {
         position: relative;
       }
@@ -43,8 +41,9 @@ export const Container = forwardRef(({ children, bg = '#000', style }, ref) => (
         position: relative;
       }
     `}
-    children={children}
-  />
+  >
+    {children}
+  </animated.div>
 ));
 
 // export const AnimatedContainer = animated(Container);
@@ -67,6 +66,47 @@ export const Heading = ({ children, style }) => (
         font-size: 10rem;
       }
     `}
-    children={children}
+  >
+    {children}
+  </animated.h1>
+);
+
+export const CursorContainer = ({ style, children }) => (
+  <animated.div
+    style={style}
+    css={css`
+      position: absolute;
+      z-index: 99999;
+      transform: translate3d(-50%, -50%);
+      pointer-events: none;
+    `}
+  >
+    {children}
+  </animated.div>
+);
+
+export const Cursor = ({ style }) => (
+  <animated.div
+    style={style}
+    css={css`
+      height: 3rem;
+      width: 3rem;
+      border: 1px solid white;
+      border-radius: 50%;
+      opacity: 0.7;
+    `}
+  />
+);
+
+export const Anchor = ({ active, ...props }) => (
+  <a
+    css={css`
+      opacity: ${active ? 1 : 0.5};
+      cursor: none;
+      &:hover {
+        opacity: 1;
+      }
+    `}
+    {...props}
   />
 );
