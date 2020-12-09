@@ -98,7 +98,7 @@ export const Cursor = ({ style }) => (
   />
 );
 
-export const Anchor = ({ active, ...props }) => (
+export const Anchor = ({ active, children, ...props }) => (
   <a
     css={css`
       opacity: ${active ? 1 : 0.5};
@@ -108,5 +108,7 @@ export const Anchor = ({ active, ...props }) => (
       }
     `}
     {...props}
-  />
+  >
+    {children}
+  </a>
 );
