@@ -24,16 +24,6 @@
   - react-spring + react-use-gesture
   - custom shader material (GLSL: C-style language)
   - recreating [http://www.celialopez.fr](http://www.celialopez.fr)
-- [Visual Synth]()
-- storytelling
-- juicy visualizations and artsy stuff
-
-## WHY NOT ?
-
-- bundle size
-- performance
-- browser support
-- react-spring releases were a bit of a pain in the 🍑
 
 ## In case I got your attention
 
@@ -41,5 +31,3 @@
 - [react-three-fiber](https://github.com/pmndrs/react-three-fiber)
 - follow [Paul Henschel](https://twitter.com/0xca0a)
 - [@react-three/drei](https://github.com/pmndrs/drei)
-
-<!-- todo: make repo public -->

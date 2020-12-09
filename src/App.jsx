@@ -11,15 +11,14 @@ function App() {
   const [location] = useLocation();
 
   const transition = useTransition(location, {
-    from: { position: [30, 0, -20], scale: [0, 0, 0], opacity: 0 },
-    enter: { position: [0, 0, 0], scale: [1, 1, 1], opacity: 1 },
-    leave: { position: [-30, 0, -10], scale: [0, 0, 0], opacity: 0 },
+    from: { position: [30, 1, -20], scale: [0, 0, 0], opacity: 0 },
+    enter: { position: [0, 1, 0], scale: [1, 1, 1], opacity: 1 },
+    leave: { position: [-30, 1, -10], scale: [0, 0, 0], opacity: 0 },
   });
 
   return (
     <div className="App">
       <Header />
-      {/* <HeadingContainer style={colorAnim} ref={containerRef} /> */}
       <Suspense fallback={<h1>Loading</h1>}>
         <Canvas transition={transition} containerRef={containerRef} />
       </Suspense>
@@ -30,7 +29,6 @@ function App() {
 
 export default App;
 
-// todo: sexy font for list
 // todo: loading component
 // todo: apply texture on hover
 // todo: error boundary

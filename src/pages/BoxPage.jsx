@@ -1,6 +1,7 @@
 import { useSpring } from "@react-spring/core";
 import { a, config } from "@react-spring/three";
 import React, { useCallback } from "react";
+import { useDrag } from "react-use-gesture";
 
 const BoxPage = () => {
   const color = useSpring({
@@ -19,7 +20,7 @@ const BoxPage = () => {
   });
 
   const [anim, set] = useSpring(() => ({
-    rotation: [-Math.PI / 3, 0, Math.PI / 3],
+    rotation: [0, 0, 0],
     scale: [2.0, 2.0, 2.0],
     config: {
       mass: 2.3,
@@ -38,11 +39,15 @@ const BoxPage = () => {
     });
   }, []);
 
-  // todo: useDrag for rotation
+  const gesture = useDrag(({ movement: [x, y] }) => {
+    set({
+      rotation: [y / 20, x / 20, 0],
+    });
+  });
 
   return (
     <group>
-      <a.mesh onClick={setZoom} {...anim}>
+      <a.mesh {...gesture()} onClick={setZoom} {...anim}>
         <boxBufferGeometry />
         <a.meshStandardMaterial {...color} />
       </a.mesh>

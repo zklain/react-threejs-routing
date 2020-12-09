@@ -11,7 +11,6 @@ const Pages = ({ portal = null, transition }) => {
     <a.group position={position} scale={scale}>
       <Switch location={location}>
         <Route path="/">
-          {/* todo: only list */}
           <List />
         </Route>
         <Route path="/box">

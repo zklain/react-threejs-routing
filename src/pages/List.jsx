@@ -80,7 +80,7 @@ const GesturesPage = () => {
   );
 
   return (
-    <a.group>
+    <a.group position={[0, -1, 0]}>
       <a.group {...spring}>
         {positions.map((position, index) => (
           <ListItem key={index} position={position} name={`item #${index}`} />

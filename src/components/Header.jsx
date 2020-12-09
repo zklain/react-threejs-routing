@@ -10,7 +10,7 @@ const Link = (props) => {
     </WLink>
   );
 };
-// todo: custom link
+
 const Header = () => (
   <Navbar>
     <Link href="/">List</Link>

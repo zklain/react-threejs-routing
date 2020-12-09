@@ -36,7 +36,7 @@ const PointerCamera = () => {
     <a.perspectiveCamera
       ref={ref}
       fov={75}
-      position={[0, 1, 10]}
+      position={[0, 1.5, 10]}
       {...animation}
     />
   );

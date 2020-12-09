@@ -20,8 +20,8 @@ const ListItem = ({ texture = null, position, name }) => {
 
   return (
     <group position={position}>
-      <Text fontSize={1} position={[0, 2.5, 0]}>
-        {name}
+      <Text font="Helvetica" fontSize={1} position={[0, 2.5, 0]}>
+        {name.toUpperCase()}
       </Text>
       <Dodecahedron
         ref={ref}

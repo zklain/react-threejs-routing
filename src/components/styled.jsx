@@ -20,7 +20,7 @@ export const Navbar = (props) => (
   />
 );
 
-export const Container = forwardRef(({ children, bg = "#000", style }, ref) => (
+export const Container = forwardRef(({ children, style }, ref) => (
   <animated.div
     ref={ref}
     style={style}
@@ -34,8 +34,6 @@ export const Container = forwardRef(({ children, bg = "#000", style }, ref) => (
       justify-content: center;
       align-items: center;
       z-index: 00;
-      background-color: ${bg};
-      will-change: background-color;
       & + div {
         position: relative;
       }
@@ -43,8 +41,9 @@ export const Container = forwardRef(({ children, bg = "#000", style }, ref) => (
         position: relative;
       }
     `}
-    children={children}
-  />
+  >
+    {children}
+  </animated.div>
 ));
 
 // export const AnimatedContainer = animated(Container);
