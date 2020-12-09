@@ -33,17 +33,11 @@ export default App;
 // todo: sexy font for list
 // todo: loading component
 // todo: apply texture on hover
-
 // todo: error boundary
-
 // todo: auto resize canvas
-
 // todo: shadow
 // todo: complex scene (add room, models, shadow)
-
 // todo: models served by CDN ?
-
-// todo: try text in place
 // todo: optimize imports => mesure bundle size
 // todo: use objects as link
 

@@ -98,3 +98,16 @@ export const Cursor = ({ style }) => (
     `}
   />
 );
+
+export const Anchor = ({ active, ...props }) => (
+  <a
+    css={css`
+      opacity: ${active ? 1 : 0.5};
+      cursor: none;
+      &:hover {
+        opacity: 1;
+      }
+    `}
+    {...props}
+  />
+);

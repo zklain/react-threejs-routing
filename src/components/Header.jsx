@@ -1,15 +1,21 @@
 import React from "react";
-import { Link } from "wouter";
-import { Navbar } from "./styled";
+import { Link as WLink, useRoute } from "wouter";
+import { Anchor, Navbar } from "./styled";
 
+const Link = (props) => {
+  const [active] = useRoute(props.href);
+  return (
+    <WLink {...props}>
+      <Anchor active={active}>{props.children}</Anchor>
+    </WLink>
+  );
+};
 // todo: custom link
 const Header = () => (
   <Navbar>
-    <Link style={{ cursor: "none" }} to="/">
-      List
-    </Link>
-    <Link to="/box">Box</Link>
-    <Link to="/text">Text</Link>
+    <Link href="/">List</Link>
+    <Link href="/box">Box</Link>
+    <Link href="/text">Text</Link>
   </Navbar>
 );
 
