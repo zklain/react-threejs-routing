@@ -2,17 +2,17 @@ import { a } from "@react-spring/three";
 import React from "react";
 import { Route, Switch } from "wouter";
 import PageHeading from "../components/PageHeading";
-import Text from "../components/Text";
 import BoxPage from "./BoxPage";
-import Waves from "./Waves";
+import List from "./List";
+import TextPage from "./TextPage";
 
-// todo: only use waves
 const Pages = ({ portal = null, transition }) => {
   return transition(({ position, scale, opacity }, location) => (
     <a.group position={position} scale={scale}>
       <Switch location={location}>
         <Route path="/">
-          <Waves />
+          {/* todo: only list */}
+          <List />
         </Route>
         <Route path="/box">
           <PageHeading animated={{ opacity }} portal={portal}>
@@ -21,10 +21,7 @@ const Pages = ({ portal = null, transition }) => {
           <BoxPage />
         </Route>
         <Route path="/text">
-          <Text>STRV</Text>
-        </Route>
-        <Route path="/01">
-          <Waves />
+          <TextPage />
         </Route>
       </Switch>
     </a.group>

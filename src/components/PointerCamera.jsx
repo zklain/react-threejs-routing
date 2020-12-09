@@ -4,7 +4,7 @@ import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { useThree } from "react-three-fiber";
 
 // todo: dont change rotation on mobile
-const PointerCamera = ({ disabled }) => {
+const PointerCamera = () => {
   const ref = useRef();
 
   const { mouse, size, setDefaultCamera } = useThree();
@@ -30,7 +30,7 @@ const PointerCamera = ({ disabled }) => {
     };
     document.addEventListener("mousemove", handleMouseMove);
     return () => document.removeEventListener("mousemove", handleMouseMove);
-  }, [size, mouse, disabled, set]);
+  }, [size, mouse, set]);
 
   return (
     <a.perspectiveCamera

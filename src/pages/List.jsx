@@ -1,34 +1,19 @@
 import { a, config } from "@react-spring/three";
 import { useSpring } from "@react-spring/web";
 import { clamp } from "lodash";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useFrame, useThree } from "react-three-fiber";
+import React, { useCallback, useMemo } from "react";
+import { useThree } from "react-three-fiber";
 import { useGesture } from "react-use-gesture";
-import Background from "../components/Background";
 import ListItem from "../components/ListItem";
-import PointerCamera from "../components/PointerCamera";
-import Waves from "../components/Waves";
 
 const ofItems = 5;
 const GesturesPage = () => {
-  const [time, setTime] = React.useState(0);
-
-  const [dragging, setDragging] = useState(false);
   // todo: paralax
   // todo: infinite scroll
-  // todo: page transitions => background stays, content changes
-  // todo: init anim => camera zoom
   // todo: camera zoom on mount
-  // todo: loading
-
-  // todo: special cursor
-  // todo: zoom out on click
-  // todo: drag from anywhere
-  // todo: bind the scroll event to the page
-  // todo: bind drag to some element
+  // todo: pass list items as children
 
   const { viewport } = useThree();
-  // const aspect = size.width / viewport.width;
 
   // items offset
   const offset = useMemo(() => {
@@ -74,7 +59,7 @@ const GesturesPage = () => {
     [bounds, spring.position, set]
   );
 
-  const bind = useGesture(
+  useGesture(
     {
       onWheel: fun,
       onDrag: fun,
@@ -90,33 +75,17 @@ const GesturesPage = () => {
           position: [pos[0], pos[1], 0],
         });
       },
-      onDragStart: () => {
-        setDragging(true);
-      },
-      onDragEnd: () => {
-        setDragging(false);
-      },
     },
     { domTarget: window, drag: { delay: 10, filterTaps: true } }
   );
-  useEffect(() => {
-    window && bind();
-  }, [bind]);
-
-  useFrame((_, delta) => {
-    setTime(time + delta);
-  });
 
   return (
     <a.group>
-      <PointerCamera disabled={dragging} />
       <a.group {...spring}>
         {positions.map((position, index) => (
           <ListItem key={index} position={position} name={`item #${index}`} />
         ))}
       </a.group>
-      <Waves time={time} />
-      <Background />
     </a.group>
   );
 };

@@ -4,8 +4,8 @@ import { animated } from "@react-spring/web";
 import { forwardRef } from "react";
 export const Navbar = (props) => (
   <animated.nav
-    style={props.style}
     css={css`
+      color: white;
       position: fixed;
       top: 1rem;
       width: 100%;

@@ -1,5 +1,5 @@
 import { useSpring } from "@react-spring/web";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useGesture } from "react-use-gesture";
 import { Cursor as CircleCursor, CursorContainer } from "./styled";
 
@@ -27,8 +27,7 @@ const Cursor = () => {
   );
 
   // todo: different cursor on drag
-  // todo:
-  const bind = useGesture(
+  useGesture(
     {
       onMouseDown: () => {
         set({
@@ -48,12 +47,8 @@ const Cursor = () => {
       },
       onMove: handleMouseMove,
     },
-    { domTarget: document }
+    { domTarget: window }
   );
-
-  useEffect(() => {
-    bind();
-  }, [bind]);
 
   return (
     <CursorContainer

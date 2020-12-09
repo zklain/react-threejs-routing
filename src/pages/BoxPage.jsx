@@ -1,6 +1,6 @@
 import { useSpring } from "@react-spring/core";
-import { a } from "@react-spring/three";
-import React, { useState } from "react";
+import { a, config } from "@react-spring/three";
+import React, { useCallback } from "react";
 
 const BoxPage = () => {
   const color = useSpring({
@@ -15,31 +15,36 @@ const BoxPage = () => {
         await next({ color: "cyan" });
       }
     },
+    config: config.slow,
   });
 
-  const [zoom, setZoom] = useState(false);
-
-  const anim = useSpring({
-    scale: zoom ? 5.0 : 2.0,
+  const [anim, set] = useSpring(() => ({
+    rotation: [-Math.PI / 3, 0, Math.PI / 3],
+    scale: [2.0, 2.0, 2.0],
     config: {
       mass: 2.3,
       tension: 113,
       friction: 20,
     },
-  });
+  }));
 
-  const boxScale = anim.scale.to((x) => [x, x, x]);
+  const setZoom = useCallback(({ current = anim.scale.get() }) => {
+    let scale = 2;
+    if (current[0] === 2) {
+      scale = 5;
+    }
+    set({
+      scale: [scale, scale, scale],
+    });
+  }, []);
+
+  // todo: useDrag for rotation
 
   return (
     <group>
-      <a.mesh
-        onClick={() => setZoom(!zoom)}
-        rotation={[-Math.PI / 3, 0, Math.PI / 3]}
-        // todo: proper type
-        scale={boxScale}
-      >
+      <a.mesh onClick={setZoom} {...anim}>
         <boxBufferGeometry />
-        <a.meshStandardMaterial color={color.color} />
+        <a.meshStandardMaterial {...color} />
       </a.mesh>
     </group>
   );

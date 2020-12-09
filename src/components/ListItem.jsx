@@ -8,10 +8,13 @@ const ListItem = ({ texture = null, position, name }) => {
   const ref = useRef();
 
   useFrame(() => {
-    ref.current.rotation.x += 0.005;
-    ref.current.rotation.z += 0.0005;
+    if (ref.current) {
+      ref.current.rotation.x += 0.005;
+      ref.current.rotation.z += 0.0005;
+    }
   });
 
+  // todo: use children as param
   // todo: apply texture on hover
   // todo: random text position
 

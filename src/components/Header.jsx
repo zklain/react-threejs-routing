@@ -1,12 +1,15 @@
 import React from "react";
-import { Navbar } from "./styled";
 import { Link } from "wouter";
+import { Navbar } from "./styled";
 
-const Header = ({ style }) => (
-  <Navbar style={style}>
-    <Link to="/#1">Waves</Link>
+// todo: custom link
+const Header = () => (
+  <Navbar>
+    <Link style={{ cursor: "none" }} to="/">
+      List
+    </Link>
     <Link to="/box">Box</Link>
-    <Link to="/text">text</Link>
+    <Link to="/text">Text</Link>
   </Navbar>
 );
 

@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
+import { useFrame, useLoader, useUpdate } from "react-three-fiber";
 import { FontLoader, Vector3 } from "three";
-import { useLoader, useUpdate } from "react-three-fiber";
 
 const Text = ({ children }) => {
   const font = useLoader(FontLoader, "/Fira Code_Regular.json");
@@ -15,6 +15,16 @@ const Text = ({ children }) => {
     },
     [children]
   );
+
+  useFrame((state) => {
+    if (mesh.current) {
+      mesh.current.rotation.y = 0.2 * Math.cos(state.clock.getElapsedTime());
+      mesh.current.rotation.x = 0.5 * Math.cos(state.clock.getElapsedTime());
+    }
+  });
+
+  // todo: shadow
+
   return (
     <group>
       <mesh ref={mesh}>
