@@ -1,5 +1,7 @@
 # REACT THREE FIBER
 
+This repo was created for presentational purposes as part of our knowledge sharings at STRV
+
 ## react-three-fiber ?
 
 - [Three.js](https://threejs.org) is a 3D library build on top of default WebGL API (you do not want to use plain WebGL 😬 )
