@@ -1,4 +1,4 @@
-# REACT THREE FIBER
+# R3F Routing Demo
 
 This repo was created for presentational purposes as part of our knowledge sharings at STRV
 
